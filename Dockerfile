@@ -1,6 +1,6 @@
 FROM 781127743430.dkr.ecr.us-east-1.amazonaws.com/metering/java-app:4
-CMD apk add maven
-ADD nurego-java.jar /opt/nurego
-ADD nurego-java-example-2.0-SNAPSHOT.jar /opt/nurego
+ADD src /opt/nurego
+RUN apk add maven
 WORKDIR /opt/nurego
-CMD [ "dumb-init", "/usr/bin/java", "nurego-java.jar" ]
+# CMD [ "dumb-init", "/usr/bin/java", "nurego-java.jar" ]
+CMD [ "dumb-init", "mvn", "spring-boot:run" ]
